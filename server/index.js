@@ -10,7 +10,15 @@ const app = express();
 const port = Number(process.env.PORT) || 5000;
 const aiEngineUrl = process.env.AI_ENGINE_URL || "http://localhost:8000";
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://help-you-umber.vercel.app/",
+    ],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use("/api/courses", courseRoutes);
 app.use("/api/quizzes", quizRoutes);
